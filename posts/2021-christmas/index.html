@@ -35,31 +35,34 @@
     <!-- meta -->
 
 
-<title>神奇的 Document designMode | Cyris&#39;s Sound</title>
+<title>圣诞随手记 | Cyris&#39;s Sound</title>
 
 
-    <meta name="keywords" content="JavaScript, 小技巧">
+    <meta name="keywords" content="金时">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="在控制台中执行： 1document.designMode&#x3D;&quot;on&quot;  然后点击页面中的文字内容试试～ 效果 再也不用点单个元素去审查、修改文字来测试样式啦。">
+    <meta name="description" content="平安夜趣事小记（一）晚饭前降温了雨下大了，风穿透了伞撑不起来两个人顶着风雨嘻嘻哈哈地小跑到了饭馆 趣事小记（二）晚饭后走在街上遇到了一对小弟弟小妹妹戴着圣诞饰品与苹果篮子问道：哥哥姐姐要买点苹果嘛好可爱啊但是不需要啦 一起画画吧买了 Apple Pencil 后第一次认真地画画，画画太难啦，但是很有趣。 西西画的：  我画的：  平安夜快乐～ 圣诞节初雪21 年的初雪，下在了圣诞节，很浪漫。 这么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神奇的 Document designMode">
-<meta property="og:url" content="https://sound.cyris.moe/posts/magic-document-design-mode/index.html">
+<meta property="og:title" content="圣诞随手记">
+<meta property="og:url" content="https://sound.cyris.moe/posts/2021-christmas/index.html">
 <meta property="og:site_name" content="Cyris&#39;s Sound">
-<meta property="og:description" content="在控制台中执行： 1document.designMode&#x3D;&quot;on&quot;  然后点击页面中的文字内容试试～ 效果 再也不用点单个元素去审查、修改文字来测试样式啦。">
+<meta property="og:description" content="平安夜趣事小记（一）晚饭前降温了雨下大了，风穿透了伞撑不起来两个人顶着风雨嘻嘻哈哈地小跑到了饭馆 趣事小记（二）晚饭后走在街上遇到了一对小弟弟小妹妹戴着圣诞饰品与苹果篮子问道：哥哥姐姐要买点苹果嘛好可爱啊但是不需要啦 一起画画吧买了 Apple Pencil 后第一次认真地画画，画画太难啦，但是很有趣。 西西画的：  我画的：  平安夜快乐～ 圣诞节初雪21 年的初雪，下在了圣诞节，很浪漫。 这么">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/designMode-loop.gif">
-<meta property="article:published_time" content="2021-04-15T13:43:27.000Z">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-2.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-3.JPG">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-4.JPG">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-5.png">
+<meta property="article:published_time" content="2021-12-25T15:48:51.000Z">
 <meta property="article:modified_time" content="2021-12-25T08:04:25.400Z">
 <meta property="article:author" content="Cyris">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="小技巧">
+<meta property="article:tag" content="金时">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/designMode-loop.gif">
+<meta name="twitter:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-1.png">
 <meta name="twitter:creator" content="@yuki_cyris">
 
 
@@ -167,12 +170,12 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        神奇的 Document designMode
+        圣诞随手记
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2021/04/" class="post-meta__date button">2021-04-15</a>
+        <a href="/archives/2021/12/" class="post-meta__date button">2021-12-25</a>
         
-    <span class="separate-dot"></span><a href="/categories/JavaScript/" class="button">JavaScript</a>
+    <span class="separate-dot"></span><a href="/categories/%E9%87%91%E6%97%B6/" class="button">金时</a>
 
  
         
@@ -189,7 +192,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%AE%89%E5%A4%9C"><span class="toc-text">平安夜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%A3%E4%BA%8B%E5%B0%8F%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-text">趣事小记（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%A3%E4%BA%8B%E5%B0%8F%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-text">趣事小记（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%B5%B7%E7%94%BB%E7%94%BB%E5%90%A7"><span class="toc-text">一起画画吧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A3%E8%AF%9E%E8%8A%82"><span class="toc-text">圣诞节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E9%9B%AA"><span class="toc-text">初雪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E4%B9%88%E5%86%B7%E7%9A%84%E5%A4%A9%EF%BC%8C%E5%AE%85%E5%AE%B6%E9%87%8C%E5%90%A7"><span class="toc-text">这么冷的天，宅家里吧</span></a></li></ol></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -199,19 +202,28 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%88%E6%9E%9C"><span class="toc-text">效果</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E5%AE%89%E5%A4%9C"><span class="toc-text">平安夜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%A3%E4%BA%8B%E5%B0%8F%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-text">趣事小记（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%A3%E4%BA%8B%E5%B0%8F%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-text">趣事小记（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%B5%B7%E7%94%BB%E7%94%BB%E5%90%A7"><span class="toc-text">一起画画吧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A3%E8%AF%9E%E8%8A%82"><span class="toc-text">圣诞节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E9%9B%AA"><span class="toc-text">初雪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%99%E4%B9%88%E5%86%B7%E7%9A%84%E5%A4%A9%EF%BC%8C%E5%AE%85%E5%AE%B6%E9%87%8C%E5%90%A7"><span class="toc-text">这么冷的天，宅家里吧</span></a></li></ol></li></ol>
     </div>
 
 
 <article class="post post__with-toc content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>在控制台中执行：</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.designMode=<span class="string">&quot;on&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后点击页面中的文字内容试试～</p>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/designMode-loop.gif" alt="designMode-loop"></p>
-<p>再也不用点单个元素去审查、修改文字来测试样式啦。</p>
+        <h2 id="平安夜"><a href="#平安夜" class="headerlink" title="平安夜"></a>平安夜</h2><h3 id="趣事小记（一）"><a href="#趣事小记（一）" class="headerlink" title="趣事小记（一）"></a>趣事小记（一）</h3><p>晚饭前降温了<br>雨下大了，风穿透了<br>伞撑不起来<br>两个人顶着风雨嘻嘻哈哈地小跑到了饭馆</p>
+<h3 id="趣事小记（二）"><a href="#趣事小记（二）" class="headerlink" title="趣事小记（二）"></a>趣事小记（二）</h3><p>晚饭后走在街上<br>遇到了一对小弟弟小妹妹<br>戴着圣诞饰品与苹果篮子<br>问道：哥哥姐姐要买点苹果嘛<br>好可爱啊<br>但是不需要啦</p>
+<h3 id="一起画画吧"><a href="#一起画画吧" class="headerlink" title="一起画画吧"></a>一起画画吧</h3><p>买了 Apple Pencil 后第一次认真地画画，画画太难啦，但是很有趣。</p>
+<p>西西画的：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-1.png" alt="2021-christmas-1"></p>
+<p>我画的：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-2.png" alt="2021-christmas-2"></p>
+<p>平安夜快乐～</p>
+<h2 id="圣诞节"><a href="#圣诞节" class="headerlink" title="圣诞节"></a>圣诞节</h2><h3 id="初雪"><a href="#初雪" class="headerlink" title="初雪"></a>初雪</h3><p>21 年的初雪，下在了圣诞节，很浪漫。</p>
+<h3 id="这么冷的天，宅家里吧"><a href="#这么冷的天，宅家里吧" class="headerlink" title="这么冷的天，宅家里吧"></a>这么冷的天，宅家里吧</h3><p>在家里做烤串吃，宅属性发作啦，不想出门。</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-3.JPG" alt="2021-christmas-3"></p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-4.JPG" alt="2021-christmas-4"></p>
+<p>阿情没得吃。</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/2021-christmas-5.png" alt="2021-christmas-5"></p>
+<p>祝大家圣诞快乐～🎄</p>
 
     </div>
     
@@ -223,7 +235,7 @@
             <strong>
                 Permalink: 
             </strong>
-            <a href="https://sound.cyris.moe/posts/magic-document-design-mode/">https://sound.cyris.moe/posts/magic-document-design-mode/</a>
+            <a href="https://sound.cyris.moe/posts/2021-christmas/">https://sound.cyris.moe/posts/2021-christmas/</a>
         </p>
         
             <strong>
@@ -234,37 +246,23 @@
     </div>
  
     <div class="post-footer__meta"><p>updated at 2021-12-25</p></div> 
-    <div class="post-meta__cats"><a href="/categories/JavaScript/" class="post-cats__link button">JavaScript</a><a href="/tags/JavaScript/" class="post-tags__link button"># JavaScript</a><a href="/tags/%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="post-tags__link button"># 小技巧</a></div> 
+    <div class="post-meta__cats"><a href="/categories/%E9%87%91%E6%97%B6/" class="post-cats__link button">金时</a><a href="/tags/%E9%87%91%E6%97%B6/" class="post-tags__link button"># 金时</a></div> 
 </article>
 
 
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/posts/css-gradient-art/" class="nav__link">
-                    <div>
-                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                    </div>
-                    <div>
-                        <div class="nav__label">
-                            Previous Post
-                        </div>
-                        <div class="nav__title">
-                            CSS 中的渐变艺术
-                        </div>
-                    </div>
-                </a>
-            
         </div>
         <div class="nav__next">
             
-                <a href="/posts/css-transform-order/" class="nav__link">
+                <a href="/posts/take-care-of-you/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             Next Post
                         </div>
                         <div class="nav__title">
-                            CSS Transform 的执行顺序
+                            她说这是她第一次这么辛苦地没日没夜地照顾一个人
                         </div>
                     </div>
                     <div>
@@ -389,8 +387,8 @@
     <script>
         function loadComment() {
             window.disqus_config = function () {
-                this.page.url = 'https://sound.cyris.moe/posts/magic-document-design-mode/';
-                this.page.identifier = 'posts/magic-document-design-mode/';
+                this.page.url = 'https://sound.cyris.moe/posts/2021-christmas/';
+                this.page.identifier = 'posts/2021-christmas/';
             };
             (function(){
                 var dsq = document.createElement('script');
