@@ -7,9 +7,9 @@ var numberOfParticules = 30;
 var pointerX = 0;
 var pointerY = 0;
 var tap = 'click'; // ('ontouchstart' in window || navigator.msMaxTouchPoints) ? 'touchstart' : 'mousedown'
-// var colors = ["rgba(255,182,185,.9)", "rgba(250,227,217,.9)", "rgba(187,222,214,.9)", "rgba(138,198,209,.9)"];
+var colors = ["rgba(255,182,185,.9)", "rgba(250,227,217,.9)", "rgba(187,222,214,.9)", "rgba(138,198,209,.9)"];
 // var colors = ["rgba(183,136,94,.6)", "rgba(253,224,220,.6)", "rgba(138,66,52,.6)", "rgba(230,221,216,.6)"];
-var colors = ["rgba(241,236,235,.9)", "rgba(94,82,94,.9)", "rgba(171,155,180,.9)", "rgba(234,233,238,.9)"];
+// var colors = ["rgba(241,236,235,.9)", "rgba(94,82,94,.9)", "rgba(171,155,180,.9)", "rgba(234,233,238,.9)"];
 // var colors = ["rgba(198, 213, 126, .9)", "rgba(213, 126, 126, .9)", "rgba(162, 205, 205, .9)", "rgba(255, 225, 175, .9)"]
 
 function setCanvasSize() {

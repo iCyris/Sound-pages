@@ -1,8 +1,8 @@
 :root {
-  --main-color: #ab9bb4;
+  --main-color: #79a5b3;
   --bg-color: #f4f4f4;
   --bg-content-color: #fff;
-  --bg-menu: #eae9ee;
+  --bg-menu: rgba(121,165,179,0.122);
   --bg-tag-color: #f4f4f4;
   --bg-cat-color: #c2c2c2;
   --bg-code: #eee;
@@ -44,7 +44,7 @@ body {
 }
 ::selection {
   color: #fff;
-  background-color: #5e525e;
+  background-color: #79a5b3;
 }
 @media screen and (max-width: 650px) {
   body {

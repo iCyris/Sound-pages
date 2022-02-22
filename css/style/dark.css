@@ -3,7 +3,7 @@
     --color-mode: 'dark';
   }
   :root:not([data-user-color-scheme]) {
-    --main-color: #ab9bb4;
+    --main-color: #79a5b3;
     --bg-color: #21252b;
     --bg-content-color: #363636;
     --bg-menu: rgba(234,233,238,0.1);
@@ -36,7 +36,7 @@
 }
 [data-user-color-scheme="dark"] {
   --color-mode: 'dark';
-  --main-color: #ab9bb4;
+  --main-color: #79a5b3;
   --bg-color: #21252b;
   --bg-content-color: #363636;
   --bg-menu: rgba(234,233,238,0.1);
