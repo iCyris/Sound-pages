@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="mask-icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+
+
+    <!-- meta -->
+
+
+<title>再回夏尔 | Cyris&#39;s Sound</title>
+
+
+    <meta name="keywords" content="金时">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="夏尔（Shire）- 《指环王》中一片美妙的土地。  20192019 年后就没有再更新过博客了，一直忙于毕设、实习、秋招、到最后正式变成打工人，几年来虽然在各种平台留下过一点爪印，但没有想过要再造一块自己的空间。工作久了后，不禁会产生这样的疑问：如果有一天你从这个公司离职了，你还剩下什么？对独立空间、归属感的渴望使我重新回到了这里。这一年前，折腾了许多博客主题，有 Hexo 的，有 Hugo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="再回夏尔">
+<meta property="og:url" content="https://sound.cyris.moe/posts/sound/index.html">
+<meta property="og:site_name" content="Cyris&#39;s Sound">
+<meta property="og:description" content="夏尔（Shire）- 《指环王》中一片美妙的土地。  20192019 年后就没有再更新过博客了，一直忙于毕设、实习、秋招、到最后正式变成打工人，几年来虽然在各种平台留下过一点爪印，但没有想过要再造一块自己的空间。工作久了后，不禁会产生这样的疑问：如果有一天你从这个公司离职了，你还剩下什么？对独立空间、归属感的渴望使我重新回到了这里。这一年前，折腾了许多博客主题，有 Hexo 的，有 Hugo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-12T09:56:51.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:41:27.578Z">
+<meta property="article:author" content="Cyris">
+<meta property="article:tag" content="金时">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@yuki_cyris">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow-night.css" media="none">
+        
+    
+
+    
+    
+
+    
+    <!-- 
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+ -->
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Cyris's Sound" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Cyris&#39;s Sound</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="navbar-menu button">RSS</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <!-- <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a> -->
+
+
+         
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="dropdown-menu button">RSS</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        再回夏尔
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/04/" class="post-meta__date button">2021-04-12</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E9%87%91%E6%97%B6/" class="button">金时</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019"><span class="toc-text">2019</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C"><span class="toc-text">工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sound"><span class="toc-text">Sound</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2019"><span class="toc-text">2019</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C"><span class="toc-text">工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sound"><span class="toc-text">Sound</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <blockquote>
+<p>夏尔（Shire）- 《指环王》中一片美妙的土地。</p>
+</blockquote>
+<h2 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h2><p>2019 年后就没有再更新过博客了，一直忙于毕设、实习、秋招、到最后正式变成打工人，几年来虽然在各种平台留下过一点爪印，但没有想过要再造一块自己的空间。工作久了后，不禁会产生这样的疑问：如果有一天你从这个公司离职了，你还剩下什么？对独立空间、归属感的渴望使我重新回到了这里。这一年前，折腾了许多博客主题，有 Hexo 的，有 Hugo 的，有 Saber 的…这次回来就不折腾样式啦，想多写一些有意义的文章～</p>
+<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><p>面试还是挺顺利的，秋招的时候面进了阿里，因为想留在杭州，所以也没尝试其他厂了，倒也没有 996，平时基本是 1085，我个人的话 6 点就会走，因为晚上是自己的黄金输出时间，更喜欢在家写代码，很有沉浸的感觉，还可以多陪陪女朋友～为了做样子呆在工位是我不能接受的，某种程度上也是我的 Work Life Balance。团队也没有强制留公司加班到几点的规定，这点还是很棒的。</p>
+<p>工作内容从纯业务渐渐走向纯研发，两者没有太多的好坏之分，只能说目前的阶段，后者能带给我的价值更多，更有趣。我期望能从工作中获取一些技术上的快感。</p>
+<p>插句题外话，我发现如果不经常写写东西，语言组织能力会退化…常见表现为，话明明到嘴边了，有那意思了，却没办法好好表达出来让其他人理解。</p>
+<h2 id="Sound"><a href="#Sound" class="headerlink" title="Sound"></a>Sound</h2><p>给新博客起了 <code>sound.cyris.moe</code> 的域名，参考了 Sora 酱的博客（sora.sound.moe），意为：</p>
+<p><strong>一个能够自由发声的小空间</strong>。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Cyris
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://sound.cyris.moe/posts/sound/">https://sound.cyris.moe/posts/sound/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2024-03-21</p></div> 
+    <div class="post-meta__cats"><a href="/categories/%E9%87%91%E6%97%B6/" class="post-cats__link button">金时</a><a href="/tags/%E9%87%91%E6%97%B6/" class="post-tags__link button"># 金时</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/posts/css-transform-order/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            CSS Transform 的执行顺序
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>Comments</h4>
+    
+    <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Cyris&#39;s Sound</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a> | Mod by Cyris</p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+    <script>
+        function loadComment() {
+            window.disqus_config = function () {
+                this.page.url = 'https://sound.cyris.moe/posts/sound/';
+                this.page.identifier = 'posts/sound/';
+            };
+            (function(){
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + 'sound-of-cyris' + '.disqus.com/embed.js';
+                (document.head || document.body).appendChild(dsq);
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<script src="/js/fireworks.js"></script>
+
+    </body>
+</html>

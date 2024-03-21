@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="mask-icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+
+
+    <!-- meta -->
+
+
+<title>CSS Container Queries | Cyris&#39;s Sound</title>
+
+
+    <meta name="keywords" content="CSS">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="最近在 Chrome Canary 中支持了一项新的 CSS 语法：Container Queries，相比 Media Queries 有了更丰富的使用场景。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Container Queries">
+<meta property="og:url" content="https://sound.cyris.moe/posts/css-container-queries/index.html">
+<meta property="og:site_name" content="Cyris&#39;s Sound">
+<meta property="og:description" content="最近在 Chrome Canary 中支持了一项新的 CSS 语法：Container Queries，相比 Media Queries 有了更丰富的使用场景。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-card-demo-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-card-demo-2.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-sidebar-demo-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-sidebar-demo-2.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__intro.jpg">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-sidebar-demo-3.gif">
+<meta property="article:published_time" content="2021-04-24T09:26:14.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:41:27.574Z">
+<meta property="article:author" content="Cyris">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-card-demo-1.png">
+<meta name="twitter:creator" content="@yuki_cyris">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow-night.css" media="none">
+        
+    
+
+    
+    
+
+    
+    <!-- 
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+ -->
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Cyris's Sound" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Cyris&#39;s Sound</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="navbar-menu button">RSS</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <!-- <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a> -->
+
+
+         
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="dropdown-menu button">RSS</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        CSS Container Queries
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/04/" class="post-meta__date button">2021-04-24</a>
+        
+    <span class="separate-dot"></span><a href="/categories/CSS/" class="button">CSS</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">Media 查询的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Container-Queries"><span class="toc-text">Container Queries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polyfill"><span class="toc-text">Polyfill</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Media-%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">Media 查询的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Container-Queries"><span class="toc-text">Container Queries</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polyfill"><span class="toc-text">Polyfill</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>最近在 <a target="_blank" rel="noopener" href="https://www.google.com/chrome/canary/">Chrome Canary</a> 中支持了一项新的 CSS 语法：<code>Container Queries</code>，相比 <code>Media Queries</code> 有了更丰富的使用场景。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>Chrome Canary: 开发者专用的每日构建版，站上网络科技最前沿（注意：Canary 版可能还不稳定）。</p>
+</blockquote>
+<h2 id="Media-查询的问题"><a href="#Media-查询的问题" class="headerlink" title="Media 查询的问题"></a>Media 查询的问题</h2><p>我们经常用枚举查询来实现响应式页面：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">750px</span>) <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">1200px</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如现在要实现这样一个效果：</p>
+<p>我们有一张卡片（Card），Card 的宽度能够自适应，且 Card 在屏幕宽度足够的时候，Title 与 Description 在同一行；在屏幕宽度不够的时候（间接导致卡片宽度不够），Title 能够与 Description 呈上下结构，以达到卡片布局的响应式。</p>
+<p>即在卡片空间足够时，是这样的效果：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-card-demo-1.png" alt="css-container-queries__media-card-demo-1"></p>
+<p>在卡片空间不够时，是这样的：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-card-demo-2.png" alt="css-container-queries__media-card-demo-2"></p>
+<p>为了要实现这样的自适应效果，我们可能会这样写：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;body&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card-title&quot;</span>&gt;</span>Card Title<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card-desc&quot;</span>&gt;</span>Card Description<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.body</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#1d1d1d</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-title</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">700</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-desc</span> &#123;</span><br><span class="line">   <span class="attribute">opacity</span>: .<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">750px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.card</span> &#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拉伸屏幕看了下效果，计划通。</p>
+<p>这种做法能处理大部分屏幕适配问题，但响应式布局有时并不只依赖屏宽的变化，比如在上面的基础上，我们加入一个可展开收起的侧导，并希望卡片能够继续做到响应式：即在侧导展开时，能够以上下结构呈现内容；而在侧导收起时（空间更大了），卡片能够以左右结构呈现内容。</p>
+<p>有侧导：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-sidebar-demo-1.png" alt="css-container-queries__media-sidebar-demo-1"></p>
+<p>无侧导：<br><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-sidebar-demo-2.png" alt="css-container-queries__media-sidebar-demo-2"></p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/Cyris/pen/VwPgZry">演示 Demo</a></p>
+<p>当我们想再次去写 media 查询的时候，发现事情不太对…</p>
+<p>侧导展开收起的时候，屏宽并没有变化呀！这时 media 查询就受到了限制，这时你发现，更好的响应式方案，不应该只针对屏幕宽度去做枚举，而是要去对容器宽度去做枚举，这时 Container Queries 就诞生了。</p>
+<h2 id="Container-Queries"><a href="#Container-Queries" class="headerlink" title="Container Queries"></a>Container Queries</h2><p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__intro.jpg" alt="css-container-queries__intro"></p>
+<p>还是刚才的卡片例子，如果要用容器查询，该怎么实现呢？</p>
+<p>两个注意点：</p>
+<blockquote>
+<ol>
+<li>实验前需要在 Chrome Canary 中输入 chrome://flags/#enable-container-queries 找到容器查询的设置，并将其置为 Enabled 后才可生效</li>
+<li>在使用 @container 时，父容器需要指定 contain 属性以开启 container 查询，如：contain: layout inline-size;</li>
+</ol>
+</blockquote>
+<p>样例代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;body&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sidebar&quot;</span>&gt;</span>Foldable Sidebar<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card-title&quot;</span>&gt;</span>Card Title<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;card-desc&quot;</span>&gt;</span>Card Description<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.body</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#2d2d2d</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">resize</span>: horizontal;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">  <span class="attribute">contain</span>: layout inline-size; <span class="comment">/* Required! */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#1d1d1d</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-title</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">700</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-desc</span> &#123;</span><br><span class="line">   <span class="attribute">opacity</span>: .<span class="number">8</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@container</span> (<span class="attribute">max-width</span>: <span class="number">600px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.card</span> &#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果如图（为了演示方便我把侧导的展开收起改为了可拖拽伸缩）：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/css-container-queries__media-sidebar-demo-3.gif" alt="css-container-queries__media-sidebar-demo-3"></p>
+<p><a target="_blank" rel="noopener" href="https://codepen.io/Cyris/pen/oNBmvJE">演示 Demo</a></p>
+<blockquote>
+<p>更多内容可阅读：<a target="_blank" rel="noopener" href="https://ishadeed.com/article/say-hello-to-css-container-queries/">Say Hello To CSS Container Queries</a></p>
+</blockquote>
+<h2 id="Polyfill"><a href="#Polyfill" class="headerlink" title="Polyfill"></a>Polyfill</h2><p><a target="_blank" rel="noopener" href="https://github.com/jsxtools/cqfill">cqfill</a></p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Cyris
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://sound.cyris.moe/posts/css-container-queries/">https://sound.cyris.moe/posts/css-container-queries/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2024-03-21</p></div> 
+    <div class="post-meta__cats"><a href="/categories/CSS/" class="post-cats__link button">CSS</a><a href="/tags/CSS/" class="post-tags__link button"># CSS</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/posts/when-to-memo-react/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            何时使用 useMemo 与 useCallback
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/posts/add-codepen-on-hexo/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            在 Hexo 中引入 Codepen
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>Comments</h4>
+    
+    <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Cyris&#39;s Sound</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a> | Mod by Cyris</p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+    <script>
+        function loadComment() {
+            window.disqus_config = function () {
+                this.page.url = 'https://sound.cyris.moe/posts/css-container-queries/';
+                this.page.identifier = 'posts/css-container-queries/';
+            };
+            (function(){
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + 'sound-of-cyris' + '.disqus.com/embed.js';
+                (document.head || document.body).appendChild(dsq);
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<script src="/js/fireworks.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="mask-icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+
+
+    <!-- meta -->
+
+
+<title>CSS 中的渐变艺术 | Cyris&#39;s Sound</title>
+
+
+    <meta name="keywords" content="CSS">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="CSS 中的渐变（gradient）有许多种形态，针对其语法与能实现的效果做一次系统性的整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 中的渐变艺术">
+<meta property="og:url" content="https://sound.cyris.moe/posts/css-gradient-art/index.html">
+<meta property="og:site_name" content="Cyris&#39;s Sound">
+<meta property="og:description" content="CSS 中的渐变（gradient）有许多种形态，针对其语法与能实现的效果做一次系统性的整理。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-2.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-3.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-4.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/liner-gradient-demo-hover-button.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/radial-gradient-demo-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeating-linear-gradient-demo-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeating-linear-gradient-demo-2.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeating-radial-gradient.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-1.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-2.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-3.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-4.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-5.png">
+<meta property="og:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeat-conic-gradient.gif">
+<meta property="article:published_time" content="2021-04-17T07:17:16.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:41:27.574Z">
+<meta property="article:author" content="Cyris">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-1.png">
+<meta name="twitter:creator" content="@yuki_cyris">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow-night.css" media="none">
+        
+    
+
+    
+    
+
+    
+    <!-- 
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+ -->
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Cyris's Sound" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Cyris&#39;s Sound</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="navbar-menu button">RSS</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <!-- <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a> -->
+
+
+         
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="dropdown-menu button">RSS</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        CSS 中的渐变艺术
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/04/" class="post-meta__date button">2021-04-17</a>
+        
+    <span class="separate-dot"></span><a href="/categories/CSS/" class="button">CSS</a>
+
+    <span class="separate-dot"></span><a href="/categories/CSS/%E6%B8%90%E5%8F%98/" class="button">渐变</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Linear-gradient"><span class="toc-text">1. Linear gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-Demo"><span class="toc-text">场景 Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Radial-gradient"><span class="toc-text">2. Radial gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95-1"><span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Repeating-gradient"><span class="toc-text">3. Repeating gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#repeating-linear-gradient"><span class="toc-text">repeating-linear-gradient</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeating-radial-gradient"><span class="toc-text">repeating-radial-gradient</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Conic-gradient"><span class="toc-text">4. Conic gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-Demo-1"><span class="toc-text">场景 Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A2%E7%84%B6%E5%8F%AB%E9%94%A5%E5%BD%A2%EF%BC%8C%E9%82%A3%E5%85%88%E6%9D%A5%E7%94%BB%E4%B8%AA%E2%80%9C%E9%94%A5%E2%80%9D"><span class="toc-text">既然叫锥形，那先来画个“锥”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E8%89%B2%E6%9D%BF"><span class="toc-text">调色板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%88%B6%E4%BD%9C%E9%A5%BC%E5%9B%BE"><span class="toc-text">快速制作饼图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%8B%E7%9B%98"><span class="toc-text">棋盘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Repeat-it"><span class="toc-text">Repeat it?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E6%80%A7"><span class="toc-text">浏览器支持性</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Linear-gradient"><span class="toc-text">1. Linear gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-Demo"><span class="toc-text">场景 Demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Radial-gradient"><span class="toc-text">2. Radial gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95-1"><span class="toc-text">基本用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Repeating-gradient"><span class="toc-text">3. Repeating gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#repeating-linear-gradient"><span class="toc-text">repeating-linear-gradient</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeating-radial-gradient"><span class="toc-text">repeating-radial-gradient</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Conic-gradient"><span class="toc-text">4. Conic gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-Demo-1"><span class="toc-text">场景 Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A2%E7%84%B6%E5%8F%AB%E9%94%A5%E5%BD%A2%EF%BC%8C%E9%82%A3%E5%85%88%E6%9D%A5%E7%94%BB%E4%B8%AA%E2%80%9C%E9%94%A5%E2%80%9D"><span class="toc-text">既然叫锥形，那先来画个“锥”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E8%89%B2%E6%9D%BF"><span class="toc-text">调色板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%88%B6%E4%BD%9C%E9%A5%BC%E5%9B%BE"><span class="toc-text">快速制作饼图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%8B%E7%9B%98"><span class="toc-text">棋盘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Repeat-it"><span class="toc-text">Repeat it?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E6%80%A7"><span class="toc-text">浏览器支持性</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>CSS 中的渐变（gradient）有许多种形态，针对其语法与能实现的效果做一次系统性的整理。</p>
+<span id="more"></span>
+
+<p><code>&lt;gradient&gt;</code> 包括：</p>
+<ol>
+<li>Linear gradient（线性渐变）</li>
+<li>Radial gradient（径向渐变）</li>
+<li>Repeating gradient（重复渐变）</li>
+<li>Conic gradient（锥形渐变）</li>
+</ol>
+<h2 id="1-Linear-gradient"><a href="#1-Linear-gradient" class="headerlink" title="1. Linear gradient"></a>1. Linear gradient</h2><p>线性渐变，最常用的渐变形态。</p>
+<p>完整语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">linear-gradient(<span class="selector-attr">[ &lt;angle&gt; | to &lt;side-or-corner&gt; ,]</span>? &lt;<span class="attribute">color</span>-stop-list&gt;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* types */</span></span><br><span class="line">&lt;angle&gt;: [CSS &lt;angle&gt;](https://developer.mozilla.org/en-US/docs/Web/CSS/angle)</span><br><span class="line">&lt;side-or-corner&gt;: [ left | right ] || [ top | bottom ]</span><br><span class="line">&lt;color-stop-list&gt;: [ &lt;linear-color-stop&gt; [, &lt;color-hint&gt;? ]? ]#, &lt;linear-color-stop&gt;</span><br><span class="line">    &lt;linear-color-stop&gt;: &lt;color&gt; [ &lt;color-stop-length&gt; ]?</span><br><span class="line">        &lt;color-stop-length&gt;: [ &lt;percentage&gt; | &lt;length&gt; ]&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    &lt;<span class="attribute">color</span>-hint&gt;: [ &lt;percentage&gt; | &lt;length&gt; ]</span><br></pre></td></tr></table></figure>
+
+<p>这里注意一下 <code>side-or-corner</code> 的语法：它包含两个关键词：第一个指出垂直位置 <code>left</code> or <code>right</code>，第二个指出水平位置 <code>top</code> or <code>bottom</code>。关键词的先后顺序无影响，且都是可选的。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>最基本的用法就是直接丢几个颜色进去，会渲染出一个自上而下的渐变色：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(white, <span class="number">#9198e5</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-1.png" alt="linear-gradient-demo-1"></p>
+<p>转个角度试试：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="number">0.25turn</span>, white, <span class="number">#9198e5</span>);</span><br><span class="line">=</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="number">90deg</span>, white, <span class="number">#9198e5</span>);</span><br><span class="line">=</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, white, <span class="number">#9198e5</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-2.png" alt="linear-gradient-demo-2"></p>
+<p>颜色后面可以跟一个结束位置参数，准确的名字是 <code>&lt;linear-color-stop&gt;</code>，可以为百分比 <code>%</code>，也可以为 CSS 的各种单位 <code>px, rem...</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, white <span class="number">20%</span>, <span class="number">#9198e5</span> <span class="number">80%</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-3.png" alt="linear-gradient-demo-3"></p>
+<p>这个百分比很好用，用 CSS 实现的渐变要比直接切图对屏幕的适应性更好。</p>
+<p>还可以这样玩（background 有许多写法，下次整理一下单独写）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(<span class="number">217deg</span>, <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>,.<span class="number">8</span>), <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="number">70.71%</span>),</span><br><span class="line">            <span class="built_in">linear-gradient</span>(<span class="number">127deg</span>, <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>,.<span class="number">8</span>), <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="number">70.71%</span>),</span><br><span class="line">            <span class="built_in">linear-gradient</span>(<span class="number">336deg</span>, <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>,.<span class="number">8</span>), <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>) <span class="number">70.71%</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/linear-gradient-demo-4.png" alt="linear-gradient-demo-4"></p>
+<h3 id="场景-Demo"><a href="#场景-Demo" class="headerlink" title="场景 Demo"></a>场景 Demo</h3><p>用线性渐变搭配 CSS 动画可以做出一些炫酷的效果，比如这个<a target="_blank" rel="noopener" href="https://codepen.io/Cyris/embed/abpjJrK">按钮 Hover 效果</a>（为了样式易读，未加 prefix，建议使用 Chrome 浏览器查看）：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/liner-gradient-demo-hover-button.png" alt="liner-gradient-demo-hover-button"></p>
+<iframe id="cp_embed_abpjJrK" src="//codepen.io/Cyris/embed/abpjJrK?height=360&theme-id=dark&slug-hash=abpjJrK&default-tab=[css,result" scrolling="no" frameborder="no" height="360" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+
+<h2 id="2-Radial-gradient"><a href="#2-Radial-gradient" class="headerlink" title="2. Radial gradient"></a>2. Radial gradient</h2><p>径向（放射）渐变。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>([shape] [size] (at) [position], start-color, ..., last-color);</span><br></pre></td></tr></table></figure>
+
+<p>这里 <code>shape</code>、<code>size</code>、<code>position</code> 都有一些可选值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">enum shape &#123;</span><br><span class="line">  ellipse（默认）：指定椭圆形的径向渐变</span><br><span class="line">  circle：指定圆形的径向渐变</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enum size &#123;</span><br><span class="line">  farthest-corner（默认）：指定渐变的半径大小为 <span class="string">`圆心`</span> 到 <span class="string">`离圆心最远的`</span> 的 <span class="string">`角`</span></span><br><span class="line">  closest-corner ： 指定渐变的半径大小为 <span class="string">`圆心`</span> 到 <span class="string">`离圆心最近`</span> 的 <span class="string">`角`</span></span><br><span class="line">  farthest-side ：指定渐变的半径大小为 <span class="string">`圆心`</span> 到 <span class="string">`离圆心最远`</span> 的 <span class="string">`边`</span></span><br><span class="line">  closest-side ：指定渐变的半径大小 <span class="string">`圆心`</span> 到 <span class="string">`离圆心最近`</span> 的 <span class="string">`边`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enum position &#123;</span><br><span class="line">  center（默认）：设置 <span class="string">`中间`</span> 为渐变圆心的纵坐标值</span><br><span class="line">  top：设置 <span class="string">`顶部`</span> 为渐变圆心的纵坐标值</span><br><span class="line">  bottom：设置 <span class="string">`底部`</span> 为径向渐变圆心的纵坐标值</span><br><span class="line">  ... <span class="comment">// 与  background-position、transform-origin 的参数保持一致</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(white, <span class="number">#9198e5</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/radial-gradient-demo-1.png" alt="radial-gradient-demo-1"></p>
+<p>径向渐变的应用场景还是比较少的，基本只能做做背景图。张鑫旭大佬写过一个<a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2019/04/css-wave-wavy-animation/">用径向渐变实现波浪线动画</a>的效果，有兴趣可以看看。</p>
+<h2 id="3-Repeating-gradient"><a href="#3-Repeating-gradient" class="headerlink" title="3. Repeating gradient"></a>3. Repeating gradient</h2><p>重复渐变，包含<code>重复线性（repeating-linear-gradient）</code>与<code>重复径向（repeating-radial-gradient）</code>两种方式：</p>
+<h3 id="repeating-linear-gradient"><a href="#repeating-linear-gradient" class="headerlink" title="repeating-linear-gradient"></a>repeating-linear-gradient</h3><p>完整语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-linear-gradient</span>([angle] | to [side-or-corner], color-stop1, color-stop2, ...);</span><br></pre></td></tr></table></figure>
+
+<p>用法和线性渐变差不多，一般需要指定 color-stop 中的 stop 参数，不然不会出现重复效果（或重复效果不符合预期）。</p>
+<p>e.g.</p>
+<p>不指定任何一个 stop 参数：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-linear-gradient</span>(<span class="number">#e66465</span>, <span class="number">#2d2d2d</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeating-linear-gradient-demo-1.png" alt="repeating-linear-gradient-demo-1"></p>
+<p>即使用了 repeating-linear-gradient，也没有出现重复。</p>
+<p>指定 stop 参数后：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-linear-gradient</span>(<span class="number">#e66465</span>, <span class="number">#2d2d2d</span> <span class="number">50%</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeating-linear-gradient-demo-2.png" alt="repeating-linear-gradient-demo-2"></p>
+<p>这样就符合预期啦。</p>
+<p>可以用 <code>repeating-linear-gradient()</code> 来画斑马线、发廊💈动画之类的。</p>
+<h3 id="repeating-radial-gradient"><a href="#repeating-radial-gradient" class="headerlink" title="repeating-radial-gradient"></a>repeating-radial-gradient</h3><p>完整语法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: <span class="built_in">repeating-radial-gradient</span>([shape] [size] (at) [position], start-color, ..., last-color);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeating-radial-gradient.png" alt="repeating-radial-gradient"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-radial-gradient</span>(<span class="number">#f69d3c</span>, <span class="number">#3f87a6</span> <span class="number">50px</span>);</span><br></pre></td></tr></table></figure>
+
+<p>参数和径向渐变一致，可以用来画水的波纹、唱片机之类的，应用场景也比较局限。</p>
+<h2 id="4-Conic-gradient"><a href="#4-Conic-gradient" class="headerlink" title="4. Conic gradient"></a>4. Conic gradient</h2><p>锥形渐变，除了线性渐变外个人最喜欢的一种渐变样式！</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient.png" alt="conic-gradient"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 渐变方向为顺时针旋转 */</span></span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">conic-gradient</span>(<span class="number">#f69d3c</span>, <span class="number">#3f87a6</span>);</span><br></pre></td></tr></table></figure>
+
+<p>先来看看它的用法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conic-gradient( <span class="selector-attr">[ from &lt;angle&gt; ]</span>? <span class="selector-attr">[ at &lt;position&gt; ]</span>?, &lt;angular-<span class="attribute">color</span>-stop-list&gt; )</span><br></pre></td></tr></table></figure>
+
+<p>它包含三个参数：</p>
+<ol>
+<li>angle：起始角度</li>
+<li>position：中心位置</li>
+<li>angular-color-stop-list：色值断点（list）</li>
+</ol>
+<h3 id="场景-Demo-1"><a href="#场景-Demo-1" class="headerlink" title="场景 Demo"></a>场景 Demo</h3><h4 id="既然叫锥形，那先来画个“锥”"><a href="#既然叫锥形，那先来画个“锥”" class="headerlink" title="既然叫锥形，那先来画个“锥”"></a>既然叫锥形，那先来画个“锥”</h4><p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-1.png" alt="conic-gradient-demo-1"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">conic-gradient</span>(<span class="number">#eee</span> .<span class="number">1turn</span>, black, <span class="number">#eee</span> <span class="number">326deg</span>);</span><br></pre></td></tr></table></figure>
+
+<iframe id="cp_embed_MWJBmjr" src="//codepen.io/Cyris/embed/MWJBmjr?height=360&theme-id=dark&slug-hash=MWJBmjr&default-tab=[css,result" scrolling="no" frameborder="no" height="360" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+
+<h4 id="调色板"><a href="#调色板" class="headerlink" title="调色板"></a>调色板</h4><p>把七色都填一遍，就形成了一个调色板。</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-2.png" alt="conic-gradient-demo-2"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">conic-gradient</span>(red, yellow, lime, aqua, blue, magenta, red);</span><br><span class="line"><span class="attribute">border-radius</span>: <span class="number">50%</span></span><br></pre></td></tr></table></figure>
+
+<iframe id="cp_embed_vYgaJGr" src="//codepen.io/Cyris/embed/vYgaJGr?height=360&theme-id=dark&slug-hash=vYgaJGr&default-tab=[css,result" scrolling="no" frameborder="no" height="360" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+
+<h4 id="快速制作饼图"><a href="#快速制作饼图" class="headerlink" title="快速制作饼图"></a>快速制作饼图</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">conic-gradient</span>(<span class="number">#845460</span> <span class="number">0</span> <span class="number">40%</span>, <span class="number">#ead3cb</span> <span class="number">0</span> <span class="number">70%</span>, <span class="number">#bdc7c9</span> <span class="number">0</span>);</span><br><span class="line"><span class="comment">/* or */</span></span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">conic-gradient</span>(<span class="number">#845460</span> <span class="number">0%</span>, <span class="number">#845460</span> <span class="number">40%</span>, <span class="number">#ead3cb</span> <span class="number">0</span> <span class="number">40%</span>, <span class="number">#ead3cb</span> <span class="number">0</span> <span class="number">70%</span>, <span class="number">#bdc7c9</span> <span class="number">70%</span>, <span class="number">#bdc7c9</span> <span class="number">100%</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面两种写法是等价的效果，第一种其实是覆盖式的写法，先写的会盖在后写的上面；第二种则是直接设定各个色块的区间。</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-3.png" alt="conic-gradient-demo-3"></p>
+<iframe id="cp_embed_GRrBvWP" src="//codepen.io/Cyris/embed/GRrBvWP?height=360&theme-id=dark&slug-hash=GRrBvWP&default-tab=[css,result" scrolling="no" frameborder="no" height="360" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+
+<h4 id="棋盘"><a href="#棋盘" class="headerlink" title="棋盘"></a>棋盘</h4><p>平铺效果的核心在于重复渲染多个「样式单位（元素）」，最典型的例子就是棋盘，以前写棋盘可能要用很多个 <code>div</code> 来实现，而利用 <code>conic-gradient</code> + <code>background</code> 可以很轻松地实现这个效果。</p>
+<p>首先先用 <code>conic-gradient</code> 画一个单位元素：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-4.png" alt="conic-gradient-demo-4"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">conic-gradient</span>(black <span class="number">25%</span>, white <span class="number">0</span> <span class="number">50%</span>, black <span class="number">0</span> <span class="number">75%</span>, white <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>再利用 background-size 和 background-repeat 来渲染一打格子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">backgroud-repeat: repeat;</span><br><span class="line"><span class="attribute">background-size</span>: <span class="number">10vmin</span> <span class="number">10vmin</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/conic-gradient-demo-5.png" alt="conic-gradient-demo-5"></p>
+<iframe id="cp_embed_zYNLPRG" src="//codepen.io/Cyris/embed/zYNLPRG?height=360&theme-id=dark&slug-hash=zYNLPRG&default-tab=[css,result" scrolling="no" frameborder="no" height="360" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+
+<h4 id="Repeat-it"><a href="#Repeat-it" class="headerlink" title="Repeat it?"></a>Repeat it?</h4><p>上面所说的 <code>线性渐变</code> 和 <code>径向渐变</code> 都有 <code>repeating</code> 方法，那 <code>锥形渐变</code> 自然也要有啦，而且能玩出更多的花样来～</p>
+<p>重复锥形渐变函数：<code>repeating-conic-gradient()</code>，传参形式与锥形渐变函数一致。</p>
+<p>像 Loading 效果、五角星、雷达图等等都不在话下，还能搭配 Animation 做出很棒的特效，比如<a target="_blank" rel="noopener" href="https://codepen.io/Cyris/embed/ZELjaNG">这样</a>：</p>
+<p><img src="https://cyris.oss-cn-shanghai.aliyuncs.com/sound/repeat-conic-gradient.gif" alt="repeat-conic-gradient"></p>
+<iframe id="cp_embed_ZELjaNG" src="//codepen.io/Cyris/embed/ZELjaNG?height=360&theme-id=dark&slug-hash=ZELjaNG&default-tab=[css,result" scrolling="no" frameborder="no" height="360" allowTransparency="true" allowfullscreen="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe>
+
+<h3 id="浏览器支持性"><a href="#浏览器支持性" class="headerlink" title="浏览器支持性"></a>浏览器支持性</h3><p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=conic-gradient">caniuse conic-gradient</a></p>
+<p>截止目前（2021-4-17），IE 完全不支持（Whatever），其他浏览器支持情况较好，整体在 91%。<a target="_blank" rel="noopener" href="https://projects.verou.me/conic-gradient/">Polyfill</a>。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Cyris
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://sound.cyris.moe/posts/css-gradient-art/">https://sound.cyris.moe/posts/css-gradient-art/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2024-03-21</p></div> 
+    <div class="post-meta__cats"><a href="/categories/CSS/" class="post-cats__link button">CSS</a><a href="/categories/CSS/%E6%B8%90%E5%8F%98/" class="post-cats__link button">渐变</a><a href="/tags/CSS/" class="post-tags__link button"># CSS</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/posts/add-codepen-on-hexo/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            在 Hexo 中引入 Codepen
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/posts/magic-document-design-mode/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            神奇的 Document designMode
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>Comments</h4>
+    
+    <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Cyris&#39;s Sound</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a> | Mod by Cyris</p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+    <script>
+        function loadComment() {
+            window.disqus_config = function () {
+                this.page.url = 'https://sound.cyris.moe/posts/css-gradient-art/';
+                this.page.identifier = 'posts/css-gradient-art/';
+            };
+            (function(){
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + 'sound-of-cyris' + '.disqus.com/embed.js';
+                (document.head || document.body).appendChild(dsq);
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<script src="/js/fireworks.js"></script>
+
+    </body>
+</html>

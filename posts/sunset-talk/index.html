@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="mask-icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+
+
+    <!-- meta -->
+
+
+<title>日落拖课 | Cyris&#39;s Sound</title>
+
+
+    <meta name="keywords" content="金时">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="因为它，我们再次联系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日落拖课">
+<meta property="og:url" content="https://sound.cyris.moe/posts/sunset-talk/index.html">
+<meta property="og:site_name" content="Cyris&#39;s Sound">
+<meta property="og:description" content="因为它，我们再次联系。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-06T22:41:40.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:41:27.578Z">
+<meta property="article:author" content="Cyris">
+<meta property="article:tag" content="金时">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@yuki_cyris">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow-night.css" media="none">
+        
+    
+
+    
+    
+
+    
+    <!-- 
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+ -->
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Cyris's Sound" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Cyris&#39;s Sound</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="navbar-menu button">RSS</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <!-- <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a> -->
+
+
+         
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="dropdown-menu button">RSS</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        日落拖课
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/12/" class="post-meta__date button">2021-12-06</a>
+        
+    <span class="separate-dot"></span><a href="/categories/%E9%87%91%E6%97%B6/" class="button">金时</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%BF%E7%94%9F%E7%9A%84%E4%BF%A1"><span class="toc-text">绿生的信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%94%E5%AD%90%E7%9A%84%E5%9B%9E%E4%BF%A1"><span class="toc-text">渔子的回信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E7%90%86%E8%A7%A3%E5%AE%83%EF%BC%8C%E6%84%9F%E5%8F%97%E5%AE%83%E5%B0%B1%E5%A5%BD%E4%BA%86"><span class="toc-text">不要理解它，感受它就好了</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%BF%E7%94%9F%E7%9A%84%E4%BF%A1"><span class="toc-text">绿生的信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%94%E5%AD%90%E7%9A%84%E5%9B%9E%E4%BF%A1"><span class="toc-text">渔子的回信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E7%90%86%E8%A7%A3%E5%AE%83%EF%BC%8C%E6%84%9F%E5%8F%97%E5%AE%83%E5%B0%B1%E5%A5%BD%E4%BA%86"><span class="toc-text">不要理解它，感受它就好了</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>因为它，我们再次联系。</p>
+<span id="more"></span>
+
+<p>之前写了一篇关于 <a href="https://sound.cyris.moe/posts/chanri/">chanri</a> 的文章，记录了一个梦和一位老朋友。如今，因为<a target="_blank" rel="noopener" href="https://www.xiaoyuzhoufm.com/episode/61a1b0f84f5350c2c57bde84?s=eyJ1IjogIjYxYWIxZGM5ZTBmNWU3MjNiYjk5NzlmYiJ9">《日落拖课》</a> 这个节目，我们再次联系上了彼此。</p>
+<p>某天忽然看到 chanri 的空间发了一个奇怪的说说，点进去看是他联合几个朋友做的一档闲聊类的播客节目，出于好奇，我听完了所有内容，并且写了一封邮件，我也收到了回信，也重新拾起了这段相隔数年的友情。</p>
+<p>以下是信的内容：</p>
+<h2 id="绿生的信"><a href="#绿生的信" class="headerlink" title="绿生的信"></a>绿生的信</h2><p>Hey，日落拖课！</p>
+<p>不知不觉已经连着听了好几期节目，分享一些自己的感受吧～</p>
+<p>初次看到这个节目是看到渔子分享的空间说说，不过那时候没有立马去听。第一眼看到这个名字的感觉就是，就是，就是…嗯，描述不出来的感觉，两个觉着有点联系又不太有联系的词放在了一起，非常奇妙。后来在节目里听到原来拖课又是“Talk”的谐音，大受震撼。自然、偶然、矛盾、青春，这些感觉交织在了一起。</p>
+<p>上周发了很久的烧，连着请了四天的假，记得某一天发烧的时候，那时已没有日落，已经夜深，只有一盏昏暗的灯投射在墙纸上。平时我很嫌弃那个灯，因为不够亮，往往要开好几盏才能正常做些事情，那一天拖着发烫疲乏的身子，耷拉在枕头上，却被那昏暗的光所温暖到。就像一双柔和细腻的手。那个时刻，不知道是趋于什么原因，让我打开了《日落拖课》这个节目，听着那些日常，感觉被工作与发烧烤熟的心，得到了一次降温。</p>
+<p>烧退的那一天，杭州没再下雨，放出了很大的太阳，是颗活力、充满能量的太阳，那时恢复过来的身体与心情，是很棒的“日落时刻”。</p>
+<p>工作也有一年多了，压力比学生时代大了不少，刚好听到一期讨论兴趣与工作的节目，有很多感同深受的内容。我也在这两者间寻找一个平衡点。对于我来说，可能会选择先在传统工作中积累一定的财力，然后真正地，完全地投身到我所热爱的“工作”中去～</p>
+<p>在那之后，上下班路上、午休时间…我都会习惯性地打开这个节目，很喜欢，就像下雨后草地散发出来的清新味，洗礼着精神上的各种焦躁。</p>
+<p>祝愿节目越办越好呀，感谢。</p>
+<p>绿生<br>2021.12.04</p>
+<h2 id="渔子的回信"><a href="#渔子的回信" class="headerlink" title="渔子的回信"></a>渔子的回信</h2><p>HI 绿生</p>
+<p>一般来说，我会称呼自己是日落拖课，但我还是得提一句，我是渔子哈哈哈。<br>所以，绿生你好，很高兴收到你的来信，同时很高兴第一次这样称呼你。</p>
+<p>很抱歉回复晚了，但这样更有写信的味道。（已经努力做到比一部分快递快了）原本打算在发表新节目的那天回复你，但是新节目应该还需要几天时间吧。</p>
+<p>Gmail很少给我弹出提醒，但每次弹出提醒都是在我没有防备、已经忘了可能有人给我们写信的时候，所以这种惊喜感每次都很戳我。然后我开始阅读这封邮件，看的时候百感交集：</p>
+<p>因为信件的内容，已经让我非常感动啦，看到你在信件里说，你发烧的经历，与你提到的灯和太阳，并且还有一些关于“日落拖课”的事情。我突然觉得，“日落拖课”这样简单的、无意义的闲聊，或许真的有在某些时刻，给到大家一些力量和共鸣。所以那一刻有种破防的感觉，对节目的一些疑虑在那个时候消失了。</p>
+<p>同时，你所提及的生病的感受，和对工作的想法，也引起了我的共鸣。所以，这是一个很好的交互。希望此刻你的发烧已经好了，并且，冬天来了，注意防护。</p>
+<p>另外就是一些信件以外的内容啦，因为你关注我们微博的时候，我就注意的到你了，但是那个时候我不知道你是谁。只是我看到了你的头像和动森的超话，我当时和朋友说，有一个任天堂玩家关注我们了，我想说一说动森诶。因为之前，里池和小莱都对游戏了解很少，所以我一直没有涉及这些话题。所以我对你（当时还不知道你是谁）印象很深刻。然后就收到你的邮件了，邮件里还提及了你是从我的空间看到我的。我一下就懵了，然后从字里行间的内容和细节，我知道你是谁了。哈哈哈哈，好久没有联系了！因为我实在是很少很少打开QQ了，要不是转发这个播客，我已经非常久没有看QQ啦。所以，最近过得怎么样？</p>
+<p>就是因为你的文笔、事件，再加上一些回忆，让我非常感动，也给日落的其他小伙伴看啦，大家都觉得很温暖。非常感谢你能喜欢日落拖课！</p>
+<p>在下期的节目中，会提到这个信，so，下期见。哦不！微信见。</p>
+<p>日落拖课<br>2021.12.6</p>
+<h2 id="不要理解它，感受它就好了"><a href="#不要理解它，感受它就好了" class="headerlink" title="不要理解它，感受它就好了"></a>不要理解它，感受它就好了</h2><p>写信的感觉真的很棒。</p>
+<blockquote>
+<p>不要理解它，感受它就好了。</p>
+</blockquote>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Cyris
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://sound.cyris.moe/posts/sunset-talk/">https://sound.cyris.moe/posts/sunset-talk/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2024-03-21</p></div> 
+    <div class="post-meta__cats"><a href="/categories/%E9%87%91%E6%97%B6/" class="post-cats__link button">金时</a><a href="/tags/%E9%87%91%E6%97%B6/" class="post-tags__link button"># 金时</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/posts/take-care-of-you/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            她说这是她第一次这么辛苦地没日没夜地照顾一个人
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/posts/2021-11-15/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            流光翡翠
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>Comments</h4>
+    
+    <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Cyris&#39;s Sound</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a> | Mod by Cyris</p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+    <script>
+        function loadComment() {
+            window.disqus_config = function () {
+                this.page.url = 'https://sound.cyris.moe/posts/sunset-talk/';
+                this.page.identifier = 'posts/sunset-talk/';
+            };
+            (function(){
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + 'sound-of-cyris' + '.disqus.com/embed.js';
+                (document.head || document.body).appendChild(dsq);
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<script src="/js/fireworks.js"></script>
+
+    </body>
+</html>

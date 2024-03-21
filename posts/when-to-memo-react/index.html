@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+    
+        <link rel="mask-icon" href="https://cdn.jsdelivr.net/npm/cyris/favicon.ico">
+    
+
+
+    <!-- meta -->
+
+
+<title>何时使用 useMemo 与 useCallback | Cyris&#39;s Sound</title>
+
+
+    <meta name="keywords" content="React">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="React 中有许多性能优化的手段，useMemo 与 useCallback 是 hooks 推行后最为常用的两种方法，但是任何优化方案都是有成本的，如果为了图方便给每个函数、组件都套上 useCallback、Memo，不仅代码可读性会变差，还会因为参数的传递问题产生非预期的 bug。 正好最近在看代码规范的问题，自己也时常滥用这两个函数，重新整理学习下喵～ 简介先简单看下 React doc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="何时使用 useMemo 与 useCallback">
+<meta property="og:url" content="https://sound.cyris.moe/posts/when-to-memo-react/index.html">
+<meta property="og:site_name" content="Cyris&#39;s Sound">
+<meta property="og:description" content="React 中有许多性能优化的手段，useMemo 与 useCallback 是 hooks 推行后最为常用的两种方法，但是任何优化方案都是有成本的，如果为了图方便给每个函数、组件都套上 useCallback、Memo，不仅代码可读性会变差，还会因为参数的传递问题产生非预期的 bug。 正好最近在看代码规范的问题，自己也时常滥用这两个函数，重新整理学习下喵～ 简介先简单看下 React doc">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-25T21:16:06.000Z">
+<meta property="article:modified_time" content="2024-03-21T14:41:27.578Z">
+<meta property="article:author" content="Cyris">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@yuki_cyris">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow-night.css" media="none">
+        
+    
+
+    
+    
+
+    
+    <!-- 
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+ -->
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Cyris's Sound" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Cyris&#39;s Sound</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+                    <a href="/friends/" class="navbar-menu button">友链</a>
+                
+                    <a href="/about/" class="navbar-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="navbar-menu button">RSS</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <!-- <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a> -->
+
+
+         
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+                    <a href="/friends/" class="dropdown-menu button">友链</a>
+                
+                    <a href="/about/" class="dropdown-menu button">关于</a>
+                
+                    <a href="/atom.xml" class="dropdown-menu button">RSS</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        何时使用 useMemo 与 useCallback
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/04/" class="post-meta__date button">2021-04-25</a>
+        
+    <span class="separate-dot"></span><a href="/categories/React/" class="button">React</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#useCallback"><span class="toc-text">useCallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#useMemo"><span class="toc-text">useMemo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-text">何时使用？</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#useCallback"><span class="toc-text">useCallback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#useMemo"><span class="toc-text">useMemo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="toc-text">相同点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-text">区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-text">何时使用？</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>React 中有许多性能优化的手段，<code>useMemo</code> 与 <code>useCallback</code> 是 hooks 推行后最为常用的两种方法，但是任何优化方案都是有成本的，如果为了图方便给每个函数、组件都套上 <code>useCallback</code>、<code>Memo</code>，不仅代码可读性会变差，还会因为参数的传递问题产生非预期的 bug。</p>
+<p>正好最近在看代码规范的问题，自己也时常滥用这两个函数，重新整理学习下喵～</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>先简单看下 React docs 中关于两者的介绍：</p>
+<h3 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h3><p><a target="_blank" rel="noopener" href="https://reactjs.org/docs/hooks-reference.html#usecallback">useCallback reference</a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a, b 参数不变时，memoizedCallback 的引用不变</span></span><br><span class="line"><span class="keyword">const</span> memoizedCallback = <span class="title function_">useCallback</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">doSomething</span>(a, b);</span><br><span class="line">  &#125;,</span><br><span class="line">  [a, b],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>Returns a memoized <code>callback</code>.</p>
+<h3 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h3><p><a target="_blank" rel="noopener" href="https://reactjs.org/docs/hooks-reference.html#usememo">useMemo reference</a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a, b 参数不变时，memoizedValue 的值不变（即 computeExpensiveValue 不被执行）</span></span><br><span class="line"><span class="keyword">const</span> memoizedValue = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> <span class="title function_">computeExpensiveValue</span>(a, b), [a, b]);</span><br></pre></td></tr></table></figure>
+
+<p>Returns a memoized <code>value</code>.</p>
+<h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><p>无论 <code>useCallback</code> 还是 <code>useMemo</code> 都是通过缓存来优化性能的，只不过 <code>useCallback</code> 缓存的是函数的引用，<code>useMemo</code> 缓存的则是（函数）返回值。两者可以做到等价：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useCallback</span>(fn, deps) === <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> fn, deps))</span><br></pre></td></tr></table></figure>
+
+<p>这两个函数的第二个参数中，比较值更新的方法采用的是 JavaScript 的绝对相等 <code>===</code>，需要注意的是，JS 中函数被视为对象，除非他们引用相等，否则两个对象就算值一样，他们也不是全等的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> string1 = <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> string2 = <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(string1 === string2); <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hi&#x27;</span> === <span class="string">&#x27;hi&#x27;</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">foo1</span> = (<span class="params"></span>) =&gt; <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">foo2</span> = (<span class="params"></span>) =&gt; <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> foo1Ref = foo1;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo1 === foo2) <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(foo1 === foo1Ref) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p><code>useCallback</code> 与 <code>useMemo</code> 返回的内容不同。</p>
+<p><code>useCallback</code> 会返回一个未执行的函数，而 <code>useMemo</code> 则返回执行完函数后的值。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">foo</span> = (<span class="params"></span>) =&gt; <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> testCallback = <span class="title function_">useCallback</span>(foo, []);</span><br><span class="line"><span class="keyword">const</span> testMemo = <span class="title function_">useMemo</span>(foo, []);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(testCallback); <span class="comment">// foo() &#123;&#125;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(testMemo); <span class="comment">// bar</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">testCallback</span>()); <span class="comment">// bar</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">testMemo</span>()); <span class="comment">// TypeError: testMemo is not a function</span></span><br></pre></td></tr></table></figure>
+
+<p>在真实场景中，我们一般会这样写：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params">&#123;...props&#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在 useCallback 中传入的第一个函数，必须是一个函数。</span></span><br><span class="line">  <span class="keyword">const</span> memoizedCallback = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">someFunc</span>(foo, bar);</span><br><span class="line">  &#125;, [foo, bar]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> memoizedResult = <span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> <span class="title function_">someOtherFunc</span>(foo, bar), [</span><br><span class="line">    foo,</span><br><span class="line">    bar,</span><br><span class="line">  ]);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="何时使用？"><a href="#何时使用？" class="headerlink" title="何时使用？"></a>何时使用？</h2><p>在使用函数式组件时，常常会产生组件的重渲染，而组件的重渲染又会带来函数的引用改变或值的重计算，都是一笔开销。</p>
+<p><code>useMemo</code> 适合用于大量数据运算的场景，如：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = <span class="title class_">React</span>.<span class="title function_">useMemo</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Array</span>(<span class="number">100000</span>).<span class="title function_">fill</span>(<span class="string">&#x27;&#x27;</span>).<span class="title function_">map</span>(<span class="function"><span class="params">v</span> =&gt;</span> v);</span><br><span class="line">&#125;, [a]);</span><br></pre></td></tr></table></figure>
+
+<p><code>useCallback</code> 则适用于与 <code>memo</code> 搭配，减少由函数操作带来的重渲染，比如下面这个例子：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Child</span> = (<span class="params">&#123; handleChildClick &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;&lt;=== Child render&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleChildClick&#125;</span>&gt;</span>handleChildClick<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Parent</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleChildClick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click Child&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleParentClick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click Parent&quot;</span>);</span><br><span class="line">    <span class="title function_">setCount</span>(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      Count: &#123;count&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleParentClick&#125;</span>&gt;</span>handleParentClick<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">handleChildClick</span>=<span class="string">&#123;handleChildClick&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Parent</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在不加任何操作的情况下，每次点击 handleParentClick 的按钮，都会打印出 Child render 的信息：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;=== <span class="title class_">Child</span> render <span class="comment">// init</span></span><br><span class="line"></span><br><span class="line">click <span class="title class_">Parent</span> </span><br><span class="line">&lt;=== <span class="title class_">Child</span> render </span><br><span class="line">click <span class="title class_">Parent</span> </span><br><span class="line">&lt;=== <span class="title class_">Child</span> render </span><br></pre></td></tr></table></figure>
+
+<p>尝试给 <code>handleChildClick</code> 函数套上 <code>useCallback</code>：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState, useCallback &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Child</span> = (<span class="params">&#123; handleChildClick &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;&lt;=== Child render&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleChildClick&#125;</span>&gt;</span>handleChildClick<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Parent</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Only changes here</span></span><br><span class="line">  <span class="keyword">const</span> handleChildClick = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click Child&quot;</span>);</span><br><span class="line">  &#125;, []);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleParentClick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click Parent&quot;</span>);</span><br><span class="line">    <span class="title function_">setCount</span>(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      Count: &#123;count&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleParentClick&#125;</span>&gt;</span>handleParentClick<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">handleChildClick</span>=<span class="string">&#123;handleChildClick&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Parent</span>;</span><br></pre></td></tr></table></figure>
+
+<p>发现效果还是一样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;=== <span class="title class_">Child</span> render <span class="comment">// init</span></span><br><span class="line"></span><br><span class="line">click <span class="title class_">Parent</span> </span><br><span class="line">&lt;=== <span class="title class_">Child</span> render </span><br><span class="line">click <span class="title class_">Parent</span> </span><br><span class="line">&lt;=== <span class="title class_">Child</span> render </span><br></pre></td></tr></table></figure>
+
+<p>再给 Child 套一层 <code>memo</code>：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useState, memo, useCallback &#125; <span class="keyword">from</span> <span class="string">&quot;react&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用了 memo 的子组件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Child</span> = <span class="title function_">memo</span>(<span class="function">(<span class="params">&#123; handleChildClick &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;&lt;=== Child render&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleChildClick&#125;</span>&gt;</span>handleChildClick<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Parent</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用了 useCallback</span></span><br><span class="line">  <span class="keyword">const</span> handleChildClick = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click Child&quot;</span>);</span><br><span class="line">  &#125;, []); <span class="comment">// 如果这里填了 count，就无效了～</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleParentClick</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Click Parent&quot;</span>);</span><br><span class="line">    <span class="title function_">setCount</span>(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      Count: &#123;count&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">hr</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleParentClick&#125;</span>&gt;</span>handleParentClick<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">handleChildClick</span>=<span class="string">&#123;handleChildClick&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Parent</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样就符合预期啦：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> <span class="title class_">Click</span> <span class="title class_">Parent</span> </span><br></pre></td></tr></table></figure>
+
+<p>为什么该例中需要 <code>useCallback</code> 和 <code>memo</code> 搭配起来用才有效果？</p>
+<p>首先，将 Child 组件使用 <code>memo</code> 包裹，以达到 <code>React.PureComponent</code> 的效果，即能够对 <code>props</code> 进行浅比较，但是父组件因为 <code>count</code> 的改变，<code>handleChildClick</code> 会不断刷新引用，只有给这个函数套上 <code>useCallback</code> 进行缓存后，<code>memo</code> 的比较才能起作用，最终使得 Child 组件不被重复渲染，性能得到提升。</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>Cyris
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://sound.cyris.moe/posts/when-to-memo-react/">https://sound.cyris.moe/posts/when-to-memo-react/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2024-03-21</p></div> 
+    <div class="post-meta__cats"><a href="/categories/React/" class="post-cats__link button">React</a><a href="/tags/React/" class="post-tags__link button"># React</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/posts/jbq-new-home/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            别情的新家！
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/posts/css-container-queries/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            CSS Container Queries
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments post__with-toc content-card" id="comment">
+        
+    <h4>Comments</h4>
+    
+    <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2024 <a href="/">Cyris&#39;s Sound</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a> | Mod by Cyris</p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    
+    <script>
+        function loadComment() {
+            window.disqus_config = function () {
+                this.page.url = 'https://sound.cyris.moe/posts/when-to-memo-react/';
+                this.page.identifier = 'posts/when-to-memo-react/';
+            };
+            (function(){
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + 'sound-of-cyris' + '.disqus.com/embed.js';
+                (document.head || document.body).appendChild(dsq);
+            })();
+        }
+    
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+    
+        setTimeout(function () {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, { threshold: [0] });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+
+
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+
+<script src="/js/fireworks.js"></script>
+
+    </body>
+</html>
